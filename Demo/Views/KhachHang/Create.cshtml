@@ -1,0 +1,115 @@
+﻿@model Demo.Models.KhachHang
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    .container {
+        height: 100%;
+        align-content: center;
+    }
+
+    .card {
+        height: 450px;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 400px;
+    }
+
+    .card-header h3 {
+        color: black;
+    }
+
+    .input-group-prepend span {
+        width: 50px;
+        background-color: #FFC312;
+        color: black;
+        border: 0 !important;
+    }
+
+    input:focus {
+        outline: 0 0 0 0 !important;
+        box-shadow: 0 0 0 0 !important;
+    }
+
+    .login_btn {
+        color: black;
+        background-color: #FFC312;
+        width: 100px;
+    }
+
+        .login_btn:hover {
+            color: black;
+            background-color: white;
+        }
+
+    .card-body {
+        padding-top: 40px;
+    }
+</style>
+<div class="container-fluid" style="height: 600px; padding-top: 20px; background-image: url('../../Img/slide-trangchu-1.png')">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="d-flex justify-content-center h-200">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Thông tin khách hàng</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user-edit"></i></span>
+                                </div>
+                                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tên khách hàng" } })
+                                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                </div>
+                                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ngày sinh" } })
+                                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @placeholder = "Số điện thoại" } })
+                                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Tên tài khoản" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Mật khẩu" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn float-right login_btn">
+                            </div>
+                            <div class="form-group">
+                               @Html.ActionLink("Return","Index")
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

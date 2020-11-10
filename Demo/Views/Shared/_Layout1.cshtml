@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/Home/Term" style="color:black">
+                ASUKA
+              
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav ml-auto">
+                    <!--Search-->
+
+                    <form class="form-inline nav-item" method="get" enctype="multipart/form-data" action="@Url.Action("Tim", "SACH")">
+                        <input class="form-control mr-sm-2" type="text" id="tensach" placeholder="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav">
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color: black; padding-left: 10px;" href="#" id="navbardrop" data-toggle="dropdown">
+                                Category
+                            </a>
+                            <div class="dropdown-menu">
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","CartItem")" style="color: black; padding-left: 13px;"><span class="fas fa-shopping-cart"></span> Cart</a></li>
+                        @if (Session["kh"] == null)
+                        {
+                            <li class="nav-item"><a class="nav-link" href="/KhachHang/Create" style="color: black; padding-left: 13px;"><span class="fas fa-user-circle"></span> Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Login/Index" style="color: black; padding-left: 13px;"><span class="fas fa-sign-in-alt"></span> Login</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" href="#" style="color: black; padding-left: 13px;">Hello,@((Demo.Models.KhachHang)Session["kh"]).TenKH</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Login/Index" style="color: black; padding-left: 13px;"><span class="fas fa-sign-out-alt"></span> Logout</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!---->
+    <div class="container-fluid" style="margin-top: 55px;">
+        <div class="container text-center" style="padding-top: 10px">
+            <hr style="width:100%; margin-bottom: 0" />
+            <p style="margin:5px 0;"><strong style="color: #573ba3; font-size:17px ;"></strong></p>
+            <hr style="width:100%; margin: 0" />
+        </div>
+    </div>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
